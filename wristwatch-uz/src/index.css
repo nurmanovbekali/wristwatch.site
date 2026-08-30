@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  background-color: #0B0C0D;
+  color: #F2F2F0;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: #C9CCD1;
+  color: #0B0C0D;
+}
+
+/* Ingichka kulrang scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0C0D;
+}
+::-webkit-scrollbar-thumb {
+  background: #3A3D40;
+  border-radius: 4px;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid #C9CCD1;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Metallic/steel gradient text — replaces old gold gradient */
+.steel-gradient-text {
+  background: linear-gradient(90deg, #8A8D91 0%, #F2F2F0 50%, #8A8D91 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #3A3D40, transparent);
+}
+
+/* ---- Marquee ---- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+/* ---- 3D tilt card ---- */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* ---- Noise / grain texture overlay for technical depth ---- */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Big faint kinetic background word ---- */
+.kinetic-word {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242,242,240,0.08);
+}
+
+/* ---- Underline hover for text links (steel, not gold) ---- */
+.line-underline {
+  position: relative;
+}
+.line-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: #C9CCD1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+}
+.line-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---- Blueprint grid background (technical drawing feel) ---- */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(242,242,240,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,242,240,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ---- Numbered callout marker (A, B, C style like exploded diagrams) ---- */
+.callout-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #3A3D40;
+  border-radius: 9999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  color: #C9CCD1;
+  flex-shrink: 0;
+}
