@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b0c0d" />
+<title>Aloqa — WristWatch.uz</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  .contact-grid { display: grid; grid-template-columns: 1fr; gap: 48px; max-width: 900px; margin: 0 auto; padding-bottom: 110px; }
+  @media (min-width: 760px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+  .contact-info-list { display: flex; flex-direction: column; gap: 18px; }
+  .contact-info-item .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); margin-bottom: 4px; }
+  .contact-info-item a { font-size: 1.05rem; }
+  .contact-info-item a:hover { color: var(--steel-light); }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">WRISTWATCH<span class="dim">.UZ</span></a>
+    <nav class="nav-links">
+      <a href="index.html" data-i18n="nav.home"></a>
+      <a href="catalog.html" data-i18n="nav.catalog"></a>
+      <a href="about.html" data-i18n="nav.about"></a>
+      <a href="contact.html" data-i18n="nav.contact"></a>
+      <div class="lang-switcher">
+        <button class="lang-btn"><span id="lang-current">UZ</span> ▾</button>
+        <div class="lang-dropdown">
+          <button data-lang="uz">O'zbekcha</button>
+          <button data-lang="ru">Русский</button>
+          <button data-lang="en">English</button>
+        </div>
+      </div>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu">
+    <a href="index.html" data-i18n="nav.home"></a>
+    <a href="catalog.html" data-i18n="nav.catalog"></a>
+    <a href="about.html" data-i18n="nav.about"></a>
+    <a href="contact.html" data-i18n="nav.contact"></a>
+    <div class="lang-switcher">
+      <button class="lang-btn"><span id="lang-current-m">UZ</span> ▾</button>
+      <div class="lang-dropdown">
+        <button data-lang="uz">O'zbekcha</button>
+        <button data-lang="ru">Русский</button>
+        <button data-lang="en">English</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <p class="uppercase-label" data-i18n="contact.eyebrow" style="margin-bottom:16px"></p>
+  <h1 data-i18n="contact.title"></h1>
+  <p data-i18n="contact.subtitle"></p>
+</section>
+
+<section class="container contact-grid reveal">
+  <div class="contact-info-list">
+    <div class="contact-info-item">
+      <p class="label" data-i18n="contact.phone"></p>
+      <a href="tel:+998332311101">+998 33 231 11 01</a>
+    </div>
+    <div class="contact-info-item">
+      <p class="label" data-i18n="contact.telegram"></p>
+      <a href="https://t.me/wristwatchuzbb" target="_blank" rel="noreferrer">@wristwatchuzbb</a>
+    </div>
+    <div class="contact-info-item">
+      <p class="label" data-i18n="contact.instagram"></p>
+      <a href="https://www.instagram.com/wristwatch__uz/" target="_blank" rel="noreferrer">@wristwatch__uz</a>
+    </div>
+  </div>
+
+  <div>
+    <h2 style="font-size:1.3rem;margin-bottom:20px" data-i18n="contact.form_title"></h2>
+    <form class="form-stack" id="contact-form">
+      <input class="field" type="text" required data-i18n-placeholder="contact.name" placeholder="">
+      <input class="field" type="tel" required data-i18n-placeholder="product.phone_placeholder" placeholder="">
+      <textarea class="field" rows="4" required data-i18n-placeholder="contact.message" placeholder="" style="resize:vertical"></textarea>
+      <button type="submit" class="btn btn-primary" data-i18n="contact.send"></button>
+      <p id="contact-status"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="logo">WRISTWATCH<span class="dim">.UZ</span></div>
+      <p class="footer-tagline" data-i18n="footer.tagline"></p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav.home"></a>
+      <a href="catalog.html" data-i18n="nav.catalog"></a>
+      <a href="about.html" data-i18n="nav.about"></a>
+      <a href="contact.html" data-i18n="nav.contact"></a>
+    </div>
+    <div class="footer-links">
+      <a href="tel:+998332311101">+998 33 231 11 01</a>
+      <a href="https://t.me/wristwatchuzbb" target="_blank" rel="noreferrer">Telegram</a>
+      <a href="https://www.instagram.com/wristwatch__uz/" target="_blank" rel="noreferrer">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span id="footer-year"></span> WRISTWATCH.UZ — <span data-i18n="footer.rights"></span>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  // Bu forma hozircha Telegram botga to'g'ridan-to'g'ri ulanmagan (mahsulot buyurtma
+  // formasidan farqli). Xohlasangiz, uni ham /.netlify/functions/notify-order ga
+  // ulash mumkin — hozircha oddiy "qabul qilindi" xabarini ko'rsatadi.
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('contact-status').textContent = t('product.sent');
+    document.getElementById('contact-status').className = 'form-success';
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
