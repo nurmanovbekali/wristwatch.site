@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#061a12" />
+<script>
+  // Applied before first paint to avoid a wrong-theme flash.
+  (function () {
+    try {
+      var saved = localStorage.getItem('ww_theme');
+      var theme = (saved === 'light' || saved === 'dark') ? saved :
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<title>WristWatch.uz — Advanced Timepiece Retail</title>
+<meta name="description" content="WristWatch.uz — original qo'l soatlari. Aniqlik, muhandislik va ishonch." />
+<link rel="canonical" href="https://wristwatchsite.netlify.app/" />
+<meta property="og:title" content="WristWatch.uz — Advanced Timepiece Retail" />
+<meta property="og:description" content="WristWatch.uz — original qo'l soatlari. Aniqlik, muhandislik va ishonch." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://wristwatchsite.netlify.app/" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo">WRISTWATCH<span class="dim">.UZ</span></a>
+    <nav class="nav-links">
+      <a href="index.html" data-i18n="nav.home"></a>
+      <a href="catalog.html" data-i18n="nav.catalog"></a>
+      <a href="about.html" data-i18n="nav.about"></a>
+      <a href="contact.html" data-i18n="nav.contact"></a>
+      <div class="lang-switcher">
+        <button class="lang-btn"><span id="lang-current">UZ</span> ▾</button>
+        <div class="lang-dropdown">
+          <button data-lang="uz">O'zbekcha</button>
+          <button data-lang="ru">Русский</button>
+          <button data-lang="en">English</button>
+        </div>
+      </div>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu">
+    <a href="index.html" data-i18n="nav.home"></a>
+    <a href="catalog.html" data-i18n="nav.catalog"></a>
+    <a href="about.html" data-i18n="nav.about"></a>
+    <a href="contact.html" data-i18n="nav.contact"></a>
+    <div class="lang-switcher">
+      <button class="lang-btn"><span id="lang-current-m">UZ</span> ▾</button>
+      <div class="lang-dropdown">
+        <button data-lang="uz">O'zbekcha</button>
+        <button data-lang="ru">Русский</button>
+        <button data-lang="en">English</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-dotgrid"></div>
+  <div class="hero-kinetic-word"><span>WRISTWATCH</span></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="hero-content">
+    <p class="uppercase-label hero-eyebrow" data-i18n="hero.eyebrow"></p>
+    <h1 class="hero-title" data-word-reveal="hero.title"></h1>
+    <p class="hero-subtitle" data-i18n="hero.subtitle"></p>
+    <div class="hero-cta">
+      <a href="catalog.html" class="btn btn-primary" data-i18n="hero.cta"></a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" data-i18n="hero.scroll"></div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- ===== PHILOSOPHY ===== -->
+<section class="philosophy reveal">
+  <h2 data-i18n="philosophy.title"></h2>
+  <p data-i18n="philosophy.text"></p>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="container reveal">
+  <p class="uppercase-label text-center" data-i18n="stats.eyebrow" style="margin-bottom:16px"></p>
+  <h2 class="text-center font-display" style="font-size:clamp(1.6rem,4vw,2.4rem);max-width:600px;margin:0 auto 48px" data-i18n="stats.title"></h2>
+  <div class="stats-grid">
+    <div>
+      <p class="stat-value" data-counter="500+">0</p>
+      <p class="stat-label" data-i18n="stats.1.label"></p>
+    </div>
+    <div>
+      <p class="stat-value" data-counter="50+">0</p>
+      <p class="stat-label" data-i18n="stats.2.label"></p>
+    </div>
+    <div>
+      <p class="stat-value" data-counter="24/7">0</p>
+      <p class="stat-label" data-i18n="stats.3.label"></p>
+    </div>
+    <div>
+      <p class="stat-value" data-counter="100%">0</p>
+      <p class="stat-label" data-i18n="stats.4.label"></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- ===== VIDEO SHOWCASE ===== -->
+<div class="video-showcase">
+  <div class="video-frame reveal">
+    <video src="assets/video/watch-reveal.mp4" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+  <div class="video-copy reveal">
+    <h3 data-i18n="video.title"></h3>
+    <p data-i18n="video.text"></p>
+    <a href="catalog.html" class="btn btn-outline" data-i18n="hero.cta"></a>
+  </div>
+</div>
+
+<!-- ===== FEATURED PRODUCTS ===== -->
+<section class="container reveal" id="featured-section" style="padding-bottom:110px">
+  <p class="uppercase-label text-center" data-i18n="featured.eyebrow" style="margin-bottom:16px"></p>
+  <h2 class="text-center font-display" style="font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:48px" data-i18n="featured.title"></h2>
+  <div class="product-grid" id="featured-products"></div>
+  <div class="text-center" style="margin-top:48px">
+    <a href="catalog.html" class="btn btn-outline" data-i18n="featured.cta"></a>
+  </div>
+</section>
+
+<!-- ===== VALUES / TRUST PANEL ===== -->
+<section class="section-bg-graphite reveal" style="padding:80px 20px 100px">
+  <div class="container" style="max-width:900px">
+    <div class="values-grid">
+      <div class="value-card">
+        <h3 data-i18n="about.value.1.title"></h3>
+        <p data-i18n="about.value.1.text"></p>
+      </div>
+      <div class="value-card">
+        <h3 data-i18n="about.value.2.title"></h3>
+        <p data-i18n="about.value.2.text"></p>
+      </div>
+      <div class="value-card">
+        <h3 data-i18n="about.value.3.title"></h3>
+        <p data-i18n="about.value.3.text"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="logo">WRISTWATCH<span class="dim">.UZ</span></div>
+      <p class="footer-tagline" data-i18n="footer.tagline"></p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav.home"></a>
+      <a href="catalog.html" data-i18n="nav.catalog"></a>
+      <a href="about.html" data-i18n="nav.about"></a>
+      <a href="contact.html" data-i18n="nav.contact"></a>
+    </div>
+    <div class="footer-links">
+      <a href="tel:+998332311101">+998 33 231 11 01</a>
+      <a href="https://t.me/wristwatchuzbb" target="_blank" rel="noreferrer">Telegram</a>
+      <a href="https://www.instagram.com/wristwatch__uz/" target="_blank" rel="noreferrer">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span id="footer-year"></span> WRISTWATCH.UZ — <span data-i18n="footer.rights"></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/products.js"></script>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function renderMarquee() {
+    var track = document.getElementById('marquee-track');
+    var text = t('marquee.text');
+    var html = '';
+    for (var r = 0; r < 2; r++) {
+      html += '<div style="display:flex;flex-shrink:0;">';
+      for (var i = 0; i < 6; i++) html += '<span>' + text + '</span>';
+      html += '</div>';
+    }
+    track.innerHTML = html;
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    renderMarquee();
+    loadFeaturedProducts();
+  });
+  document.addEventListener('ww:langchange', renderMarquee);
+</script>
+</body>
+</html>

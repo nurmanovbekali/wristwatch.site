@@ -1,0 +1,17 @@
+# WristWatch.uz — Netlify konfiguratsiyasi
+#
+# MUHIM: Bu sof HTML/CSS/JS sayt — hech qanday "build" bosqichi kerak emas!
+# "command" va "publish" ataylab yozilmagan, chunki fayllar allaqachon
+# tayyor holda repo ILDIZIDA (root) joylashgan. Netlify ularni to'g'ridan-to'g'ri
+# xizmat qiladi. "Base directory" haqida umuman qayg'urish shart emas.
+
+[build]
+  functions = "netlify/functions"
+
+# Netlify /404.html faylini avtomatik taniydi, lekin bu qoidani aniqlik uchun
+# qo'shib qo'ydik — mavjud bo'lmagan har qanday yo'l uchun 404.html
+# to'g'ri 404 status kodi bilan ko'rsatiladi.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

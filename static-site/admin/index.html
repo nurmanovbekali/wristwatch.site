@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#061a12" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Admin — WristWatch.uz</title>
+<script>
+  // Applied before first paint to avoid a wrong-theme flash.
+  (function () {
+    try {
+      var saved = localStorage.getItem('ww_theme');
+      var theme = (saved === 'light' || saved === 'dark') ? saved :
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+<link rel="stylesheet" href="../assets/css/admin.css" />
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div class="admin-login-wrap" id="admin-login-wrap">
+  <div class="admin-login-box">
+    <div class="logo" style="justify-content:center;display:flex;margin-bottom:8px">WRISTWATCH<span class="dim">.UZ</span></div>
+    <h1 style="font-size:1.1rem;color:var(--steel);margin-bottom:28px;font-weight:400">Admin panel</h1>
+    <form class="form-stack" id="admin-login-form">
+      <input class="field" type="email" id="admin-email" placeholder="Email" required autocomplete="username">
+      <input class="field" type="password" id="admin-password" placeholder="Parol" required autocomplete="current-password">
+      <button type="submit" class="btn btn-primary" id="admin-login-submit">Kirish</button>
+      <p class="admin-error" id="admin-login-error"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div class="admin-shell admin-hidden" id="admin-app">
+  <aside class="admin-sidebar">
+    <div class="logo" style="font-size:1.1rem">WRISTWATCH<span class="dim">.UZ</span></div>
+    <nav class="admin-nav">
+      <button data-tab="dashboard" class="active">Boshqaruv paneli</button>
+      <button data-tab="products">Mahsulotlar</button>
+      <button data-tab="orders">Buyurtmalar</button>
+    </nav>
+    <button class="admin-logout admin-btn admin-btn-outline" id="admin-logout-btn" style="border-color:rgba(242,242,240,0.3);color:var(--steel)">Chiqish</button>
+  </aside>
+
+  <main class="admin-main">
+
+    <!-- DASHBOARD -->
+    <section class="admin-tab-panel" data-panel="dashboard">
+      <h1 class="admin-h1">Boshqaruv paneli</h1>
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <div class="admin-stat-value" id="stat-total-products">—</div>
+          <div class="admin-stat-label">Jami mahsulotlar</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-value" id="stat-new-orders">—</div>
+          <div class="admin-stat-label">Yangi buyurtmalar</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-value" id="stat-week-orders">—</div>
+          <div class="admin-stat-label">Shu hafta</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-value" id="stat-total-orders">—</div>
+          <div class="admin-stat-label">Jami buyurtmalar</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="admin-tab-panel admin-hidden" data-panel="products">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <h1 class="admin-h1" style="margin-bottom:0">Mahsulotlar</h1>
+        <button class="admin-btn" id="admin-add-product-btn">+ Yangi mahsulot</button>
+      </div>
+      <p class="admin-error" id="admin-products-error"></p>
+      <div class="admin-card" id="admin-products-list"></div>
+    </section>
+
+    <!-- ORDERS -->
+    <section class="admin-tab-panel admin-hidden" data-panel="orders">
+      <h1 class="admin-h1">Buyurtmalar</h1>
+      <p class="admin-error" id="admin-orders-error"></p>
+      <div class="admin-card" id="admin-orders-list"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div class="admin-modal-backdrop" id="product-modal">
+  <div class="admin-modal">
+    <h2 id="product-modal-title">Yangi mahsulot</h2>
+    <form id="product-form">
+      <div class="admin-form-grid two-col">
+        <div>
+          <label class="admin-form-label">Nomi (UZ)</label>
+          <input class="admin-field" id="pf-name_uz" required>
+        </div>
+        <div>
+          <label class="admin-form-label">Nomi (RU)</label>
+          <input class="admin-field" id="pf-name_ru">
+        </div>
+      </div>
+      <div style="margin-top:10px">
+        <label class="admin-form-label">Nomi (EN)</label>
+        <input class="admin-field" id="pf-name_en">
+      </div>
+
+      <div style="margin-top:14px">
+        <label class="admin-form-label">Tavsif (UZ)</label>
+        <textarea class="admin-field" id="pf-description_uz" rows="2"></textarea>
+      </div>
+      <div class="admin-form-grid two-col" style="margin-top:10px">
+        <div>
+          <label class="admin-form-label">Tavsif (RU)</label>
+          <textarea class="admin-field" id="pf-description_ru" rows="2"></textarea>
+        </div>
+        <div>
+          <label class="admin-form-label">Tavsif (EN)</label>
+          <textarea class="admin-field" id="pf-description_en" rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-form-grid two-col" style="margin-top:14px">
+        <div>
+          <label class="admin-form-label">Kategoriya</label>
+          <input class="admin-field" id="pf-category" placeholder="classic, sport, luxury...">
+        </div>
+        <div>
+          <label class="admin-form-label">Narxi (so'm)</label>
+          <input class="admin-field" id="pf-price" type="number" min="0" required>
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        <label class="admin-form-label">Rasm URL</label>
+        <input class="admin-field" id="pf-image_url" placeholder="https://...">
+      </div>
+
+      <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:rgba(11,12,13,0.4);margin-top:18px;margin-bottom:8px">
+        Texnik xususiyatlar (ixtiyoriy)
+      </p>
+      <div class="admin-form-grid two-col">
+        <input class="admin-field" id="pf-case_material" placeholder="Korpus materiali">
+        <input class="admin-field" id="pf-strap_material" placeholder="Kamar materiali">
+        <input class="admin-field" id="pf-movement" placeholder="Mexanizm">
+        <input class="admin-field" id="pf-water_resistance" placeholder="Suv chidamliligi">
+        <input class="admin-field" id="pf-diameter" placeholder="Diametri">
+        <input class="admin-field" id="pf-weight" placeholder="Og'irligi">
+      </div>
+
+      <label style="display:flex;align-items:center;gap:8px;margin-top:16px;font-size:0.9rem">
+        <input type="checkbox" id="pf-in_stock" checked> Mavjud (sotuvda)
+      </label>
+
+      <p class="admin-error" id="product-form-error"></p>
+
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button type="button" class="admin-btn admin-btn-outline" id="product-modal-close" style="flex:1">Bekor qilish</button>
+        <button type="submit" class="admin-btn" id="pf-submit" style="flex:1">Saqlash</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/supabase-config.js"></script>
+<script>
+  // Admin sahifasi assets/ ichida emas, admin/ ichida joylashgani uchun
+  // Supabase config'dagi nisbiy yo'llar shu sahifada muammo tug'dirmaydi (config faqat o'zgaruvchi belgilaydi).
+</script>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/products.js"></script>
+<script src="../assets/js/admin.js"></script>
+</body>
+</html>
